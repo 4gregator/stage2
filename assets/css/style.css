@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 40px;
+}
+
+.album {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.album__nav {
+  width: 80px;
+  height: 100vh;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  text-align: center;
+  line-height: 80px;
+  border: 1px solid #999;
+  border-top-right-radius: 13px;
+  border-bottom-right-radius: 13px;
+  cursor: pointer;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+.album__nav:hover {
+  background-color: antiquewhite;
+}
+.album__nav_prev {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.album__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  max-height: 100vh;
+}
+.album__title {
+  padding: 0 40px;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 44px;
+  border-bottom: 1px solid #313373;
+}
+.album__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px 20px 0;
+  overflow-y: scroll;
+}
+.album__photo {
+  margin-bottom: 20px;
+  width: 31%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 0 0;
+  }
+
+  .album__title {
+    padding: 0 30px;
+    font-size: 20px;
+    line-height: 40px;
+  }
+  .album__nav {
+    width: 60px;
+    font-size: 17px;
+    line-height: 60px;
+  }
+  .album__photo {
+    width: 48%;
+  }
+}
+@media screen and (max-width: 440px) {
+  .album__container {
+    padding: 10px 10px 0;
+  }
+  .album__title {
+    padding: 0 20px;
+    font-size: 17px;
+    line-height: 35px;
+  }
+  .album__nav {
+    width: 40px;
+    font-size: 13px;
+    line-height: 40px;
+  }
+  .album__photo {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
