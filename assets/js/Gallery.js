@@ -77,11 +77,11 @@ class Gallery {
 
   createImage(src, className, title) {
     let img = document.createElement('img');
-    
+
+    img.classList.add(className);
     img.src = src;
     img.alt = 'image';
     if (title) img.setAttribute('title', title);
-    img.setAttribute('class', className);
 
     return img;
   }
