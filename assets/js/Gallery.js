@@ -58,6 +58,7 @@ class Gallery {
   renderPhoto(src, url, title) {
     const self = this;
     let img = this.createImage(src, this.photo, title);
+    console.log(img);
 
     img.addEventListener('click', function () {
       self.showImage(url);
@@ -77,11 +78,11 @@ class Gallery {
 
   createImage(src, className, title) {
     let img = document.createElement('img');
-
-    img.сlassName = className;
-    img.setAttribute('src', src);
-    img.setAttribute('alt', 'image');
+    
+    img.src = src;
+    img.alt = 'image';
     if (title) img.setAttribute('title', title);
+    img.setAttribute('class', className);
 
     return img;
   }
