@@ -1,15 +1,21 @@
 class Gallery {
-  constructor(titleClass, containerClass, photoClass, prevClass, nextClass, currentAlbum = 1) {
+  constructor(titleClass, containerClass, photoClass, prevClass, nextClass, popupClass, popupActiveClass, closeButton, currentAlbum = 1) {
     // имя класса тайтла галлереи
-    this.title = $('.' + titleClass);
+    this.title = document.querySelector('.' + titleClass);
     // имя класса контейнера для фото
-    this.container = $('.' + containerClass);
+    this.container = document.querySelector('.' + containerClass);
     // имя класса фото
     this.photo = photoClass;
     // имя класса кнопки переключения к предыдущему альбому
-    this.prev = $('.' + prevClass);
+    this.prev = document.querySelector('.' + prevClass);
     // имя класса кнопки переключения к следующему альбому
-    this.next = $('.' + nextClass);
+    this.next = document.querySelector('.' + nextClass);
+    // имя класса попап окна для полноразмерных фото
+    this.popup = document.querySelector('.' + popupClass);
+    // имя класса активного попап окна
+    this.popupActive = popupActiveClass;
+    // кнопка, закрывающая попап
+    this.closeButton = closeButton;
     // url ресурса
     this.url = 'https://jsonplaceholder.typicode.com';
     // путь к альбомам
@@ -43,58 +49,48 @@ class Gallery {
     photos.forEach(el => {
       this.renderPhoto(el.thumbnailUrl, el.url, el.title);
     });
-
-    this.renderButtons();
   }
 
   renderTitle(text) {
-    this.title.text(text);
+    this.title.textContent = text;
   }
 
   renderPhoto(src, url, title) {
-    let img = document.createElement('img');
-    img = $(img);
+    const self = this;
+    let img = this.createImage(src, this.photo, title);
 
-    img.addClass(this.photo)
-      .attr({
-        'src'  : src,
-        'alt'  : 'image',
-        'title': title
-      });
+    img.addEventListener('click', function () {
+      self.showImage(url);
+    })
     
-    img.on('click', function () {
-      $.fancybox.open({
-        src : url,
-        type: 'image',
-        opts: {
-          smallBtn: true,
-          animationEffect: 'zoom-in-out'
-        }
-      });
-    });
-    
-    this.container.append(img);
+    this.container.appendChild(img);
   }
 
-  renderButtons() {
-    const prev = false;
-    const next = true;
-    const self = this;
+  showImage(src) {
+    let img = this.createImage(src, 'test');
 
-    this.prev.on('click', function () {
-      self.changeAlbum(prev);
-    });
+    this.clearHtml(this.popup);
+    this.popup.appendChild(this.closeButton);
+    this.popup.appendChild(img);
+    this.popup.classList.add(this.popupActive);
+  }
 
-    this.next.on('click', function () {
-      self.changeAlbum(next);
-    });
+  createImage(src, className, title) {
+    let img = document.createElement('img');
+
+    img.сlassName = className;
+    img.setAttribute('src', src);
+    img.setAttribute('alt', 'image');
+    if (title) img.setAttribute('title', title);
+
+    return img;
   }
   
   checkAlbum() {
     return this.albums.includes(this.album);
   }
 
-  // next = следующий true || fasle
+  // next = следующий true || fasle предыдущий
   changeAlbum(next) {
     next ? this.album++ : this.album--;
 
@@ -104,14 +100,28 @@ class Gallery {
       this.album = this.albums[this.albums.length - 1];
     }
 
-    this.clear();
+    this.clearHtml(this.container);
     this.renderAlbum();
   }
 
-  clear() {
-    this.container.html('');
-    this.prev.off('click');
-    this.next.off('click');
+  initButtons() {
+    const prev = false;
+    const next = true;
+    const self = this;
+
+    this.prev.addEventListener('click', function () {
+      self.changeAlbum(prev);
+    })
+
+    this.next.addEventListener('click', function () {
+      self.changeAlbum(next);
+    })
+  }
+
+  clearHtml(target) {
+    while (target.firstChild) {
+      target.removeChild(target.firstChild);
+    }
   }
 
   async initialize() {
@@ -124,5 +134,6 @@ class Gallery {
     this.album = this.albums.includes(this.album) ? this.album : this.albums[0];
 
     this.renderAlbum();
+    this.initButtons();
   }
 }

@@ -1,3 +1,12 @@
+.popup__close:before, .popup__close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -78,6 +87,50 @@
   margin-bottom: 20px;
   width: 31%;
   cursor: pointer;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 13;
+}
+.popup_visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.popup__close {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  width: 32px;
+  height: 32px;
+  background-color: yellow;
+  opacity: 0.8;
+  cursor: pointer;
+  z-index: 17;
+}
+.popup__close:hover {
+  opacity: 1;
+}
+.popup__close:before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.popup__close:after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 991px) {
