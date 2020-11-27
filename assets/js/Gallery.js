@@ -58,7 +58,6 @@ class Gallery {
   renderPhoto(src, url, title) {
     const self = this;
     let img = this.createImage(src, this.photo, title);
-    console.log(img);
 
     img.addEventListener('click', function () {
       self.showImage(url);
