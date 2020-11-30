@@ -1,29 +1,30 @@
 class Gallery {
-  constructor(titleClass, containerClass, photoClass, prevClass, nextClass, popupClass, popupActiveClass, closeButton, currentAlbum = 1) {
+  constructor(params) {
     // имя класса тайтла галлереи
-    this.title = document.querySelector('.' + titleClass);
+    this.title = document.querySelector('.' + params.titleClass);
     // имя класса контейнера для фото
-    this.container = document.querySelector('.' + containerClass);
+    this.container = document.querySelector('.' + params.containerClass);
     // имя класса фото
-    this.photo = photoClass;
+    this.photo = params.photoClass;
     // имя класса кнопки переключения к предыдущему альбому
-    this.prev = document.querySelector('.' + prevClass);
+    this.prev = document.querySelector('.' + params.prevClass);
     // имя класса кнопки переключения к следующему альбому
-    this.next = document.querySelector('.' + nextClass);
+    this.next = document.querySelector('.' + params.nextClass);
     // имя класса попап окна для полноразмерных фото
-    this.popup = document.querySelector('.' + popupClass);
+    this.popup = document.querySelector('.' + params.popupClass);
     // имя класса активного попап окна
-    this.popupActive = popupActiveClass;
+    this.popupActive = params.popupActiveClass;
     // кнопка, закрывающая попап
-    this.closeButton = closeButton;
+    this.closeButton = params.closeButton;
     // url ресурса
     this.url = 'https://jsonplaceholder.typicode.com';
     // путь к альбомам
     this.pathToAlbum = '/albums';
     // путь к фото
     this.pathToPhoto = '/photos';
+    // дефолтный альбом = 1
     // текущий альбом
-    this.album = currentAlbum;
+    this.album = params.currentAlbum ? params.currentAlbum : 1;
     // массив всех альбомов
     this.albums = [];
   }

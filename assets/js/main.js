@@ -8,8 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
   popupClose.addEventListener('click', function () {
     closePopup('popup_visible');
   })
+
+  const params = {
+    titleClass: 'album__title',
+    containerClass: 'album__container',
+    photoClass: 'album__photo',
+    prevClass: 'album__nav_prev',
+    nextClass: 'album__nav_next',
+    popupClass: 'popup',
+    popupActiveClass: 'popup_visible',
+    closeButton: popupClose
+  };
   
-  const photoGallery = new Gallery('album__title', 'album__container', 'album__photo', 'album__nav_prev', 'album__nav_next', 'popup', 'popup_visible', popupClose);
+  const photoGallery = new Gallery(params);
   photoGallery.initialize();
 });
 
