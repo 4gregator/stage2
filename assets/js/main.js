@@ -8,20 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
   popupClose.addEventListener('click', function () {
     closePopup('popup_visible');
   })
-
-  const params = {
-    titleClass: 'album__title',
-    containerClass: 'album__container',
-    photoClass: 'album__photo',
-    prevClass: 'album__nav_prev',
-    nextClass: 'album__nav_next',
-    popupClass: 'popup',
-    popupActiveClass: 'popup_visible',
-    closeButton: popupClose
-  };
   
-  const photoGallery = new Gallery(params);
-  photoGallery.initialize();
+  const photoGallery = new Gallery();
 });
 
 // activePopup = класс активного попап окна
